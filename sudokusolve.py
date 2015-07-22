@@ -59,7 +59,7 @@ class SudokuMatrix(object):
 			for y in [y_pos + i for i in range(3)]:
 				self._update_pos(x, y, num)
 
-	def calculate_unfilled(self, x, y):
+	def _calculate_unfilled(self, x, y):
 		rowp = set(self.row(x))
 		colp = set(self.col(y))
 		areap = set(self.area(x, y).reshape(9))
@@ -67,7 +67,7 @@ class SudokuMatrix(object):
 		final = unfilled - rowp - colp - areap
 		return final
 
-	def commit_num_to_cell(self, x, y, num):
+	def _commit_num_to_cell(self, x, y, num):
 		self.puzzle[x,y] = num
 		self.possibles[x][y] = set()
 		self._update_row_pos(x, num)
